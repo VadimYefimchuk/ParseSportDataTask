@@ -24,7 +24,7 @@ namespace ParseSportTask.Classes
             }
             else
             {
-                Console.WriteLine("Status Code: {0}", response.StatusCode);
+                Console.WriteLine("Status Code: {0}\nPlease try again!", response.StatusCode);
             }
         }
 
@@ -44,9 +44,17 @@ namespace ParseSportTask.Classes
 
                     foreach (var leagueInfo in leagueCollection.line_dto_collection)
                     {
-                        Console.WriteLine("\t" + leagueInfo.match.title);
-                        Console.WriteLine("\t" + leagueInfo.match.score);
-                        Console.WriteLine("\t" + leagueInfo.match.match_time + "\n");
+                        Console.WriteLine("\tTitle: " + leagueInfo.match.title);
+
+                        if(leagueInfo.outcomes.Count > 0)
+                        {
+                            Console.WriteLine("\tOutcames: \n\t\tP1: {0}, X: {1}, P2: {2}", leagueInfo.outcomes[0].title,
+                                                                                          leagueInfo.outcomes[1].title,
+                                                                                          leagueInfo.outcomes[2].title);
+                        }
+                        
+                        Console.WriteLine("\tScore: " + leagueInfo.match.score);
+                        Console.WriteLine("\tMatch time: " + leagueInfo.match.match_time + "\n");
                     }
                 }
             }
